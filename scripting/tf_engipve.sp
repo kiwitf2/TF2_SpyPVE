@@ -68,7 +68,7 @@ ArrayList	  g_hMeleeWeapons;
 //-----------------------------------------------------//
 ConVar		  tf_bot_quota;
 ConVar		  tf_gamemode_cp;
-ConVar		  sm_engipve_bot_sapper_insta_remove;
+// ConVar		  sm_engipve_bot_sapper_insta_remove;
 ConVar		  sm_engipve_respawn_bots_on_round_end;
 ConVar		  sm_engipve_allow_respawnroom_build;
 ConVar		  sm_engipve_clear_gibs;
@@ -125,7 +125,7 @@ public OnPluginStart()
 	//-----------------------------------------------------//
 	CreateConVar("engipve_version", PLUGIN_VERSION, "[TF2] Engineer PVE Version", FCVAR_DONTRECORD);
 	sm_engipve_allow_respawnroom_build	 = CreateConVar("sm_engipve_allow_respawnroom_build", "1", "Can humans build in respawn rooms?");
-	sm_engipve_bot_sapper_insta_remove	 = CreateConVar("sm_engipve_bot_sapper_insta_remove", "1", "Bots remove sappers with just one hit");
+	// sm_engipve_bot_sapper_insta_remove	 = CreateConVar("sm_engipve_bot_sapper_insta_remove", "1", "Bots remove sappers with just one hit");
 	sm_engipve_respawn_bots_on_round_end = CreateConVar("sm_engipve_respawn_bots_on_round_end", "0", "Should we instantly respawn bots on round end? (Engineer Massacre)");
 	sm_engipve_clear_gibs				 = CreateConVar("sm_engipve_clear_gibs", "1", "Should we clean up gibs to save up on edicts?");
 	sm_engipve_spy_capblock_time		 = CreateConVar("sm_engipve_spy_capblock_time", "20", "For how long should the spy block feature work?");
@@ -239,11 +239,12 @@ public OnEntityCreated(int entity, const char[] szClassname)
 			return;
 		}
 	}
-
-	if (StrEqual(szClassname, "obj_attachment_sapper"))
-	{
-		SDKHook(entity, SDKHook_OnTakeDamage, OnSapperTakeDamage);
-	}
+	
+	// removed code, originally from tf_engipve and screws up how blu team interacts with sappers -kiwi 01/01/2025
+	// if (StrEqual(szClassname, "obj_attachment_sapper"))
+	// {
+	// 	SDKHook(entity, SDKHook_OnTakeDamage, OnSapperTakeDamage);
+	// }
 
 	if (StrEqual(szClassname, "item_teamflag"))
 	{
@@ -882,22 +883,22 @@ public Action Timer_UpdateRoundTime(Handle timer, any ent)
 //-------------------------------------------------------//
 // SDK Hooks
 //-------------------------------------------------------//
-public Action OnSapperTakeDamage(int victim, int& attacker, int& inflictor, float& damage, int& damagetype)
-{
-	if (!sm_engipve_bot_sapper_insta_remove.BoolValue)
-		return Plugin_Handled;
+// public Action OnSapperTakeDamage(int victim, int& attacker, int& inflictor, float& damage, int& damagetype)
+// {
+// 	if (!sm_engipve_bot_sapper_insta_remove.BoolValue)
+// 		return Plugin_Handled;
 
-	if (IsClientInGame(attacker))
-	{
-		if (TF2_GetClientTeam(attacker) == TFTeam_Bots)
-		{
-			damage = 9999.0;
-			return Plugin_Changed;
-		}
-	}
+// 	if (IsClientInGame(attacker))
+// 	{
+// 		if (TF2_GetClientTeam(attacker) == TFTeam_Bots)
+// 		{
+// 			damage = 9999.0;
+// 			return Plugin_Changed;
+// 		}
+// 	}
 
-	return Plugin_Handled;
-}
+// 	return Plugin_Handled;
+// }
 
 public void OnFlagSpawned(int flag)
 {
