@@ -27,8 +27,8 @@
 
 public Plugin myinfo =
 {
-	name		= "[TF2] Engineer PVE",
-	author		= "Moonly Days, Uncle Dane",
+	name		= "[TF2] Spy PVE",
+	author		= "Moonly Days, Uncle Dane, Kiwi TF2",
 	description = "Engineer PVE",
 	version		= PLUGIN_VERSION,
 	url			= "https://github.com/MoonlyDays/TF2_EngineerPVE"
@@ -191,7 +191,7 @@ public OnPluginStart()
 	// COMMANDS
 	//-----------------------------------------------------//
 	RegAdminCmd("sm_engipve_reload", cReload, ADMFLAG_CHANGEMAP, "Reloads Engineer PVE config.");
-	RegAdminCmd("sm_becomeengibot", cBecomeEngiBot, ADMFLAG_ROOT, "Switches the client to the bot team.");
+	RegAdminCmd("sm_becomespybot", cBecomeEngiBot, ADMFLAG_ROOT, "Switches the client to the bot team.");
 
 	AddCommandListener(cJoinTeam, "jointeam");
 	AddCommandListener(cAutoTeam, "autoteam");
@@ -222,7 +222,7 @@ public bool OnClientConnect(int client, char[] rejectMsg, int maxlen)
 	int maxHumans = MaxClients - tf_bot_quota.IntValue;
 	if (PVE_GetHumanCount() > maxHumans)
 	{
-		Format(rejectMsg, maxlen, "[1000 Engis] No more human slots are available, sorry :C");
+		Format(rejectMsg, maxlen, "[Jontillion Spies] No more human slots are available, sorry :C");
 		return false;
 	}
 
@@ -712,7 +712,7 @@ void PVE_EnableCapture(int client)
 Action cReload(int client, int args)
 {
 	Config_Load();
-	ReplyToCommand(client, "[SM] Engineer PVE config was reloaded!");
+	ReplyToCommand(client, "[SM] Spy PVE config was reloaded!");
 	return Plugin_Handled;
 }
 
@@ -742,7 +742,7 @@ Action cAutoTeam(int client, const char[] command, int argc)
 Action cBecomeEngiBot(int client, int args)
 {
 	TF2_ChangeClientTeam(client, TFTeam_Bots);
-	PrintCenterText(client, "You are now an Engineer bot!");
+	PrintCenterText(client, "You are now a Spy bot!");
 	return Plugin_Handled;
 }
 
