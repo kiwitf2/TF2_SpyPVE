@@ -11,7 +11,7 @@ A special PVE gamemode designed by Uncle Dane for Uncletopia servers, but forked
 
 ## Commands
 - `sm_engipve_reload` - Reloads the Config
-- `sm_becomeengibot` - 🤫
+- `sm_becomespybot` - 🤫
 
 ## Requires
 
