@@ -1,6 +1,6 @@
-# One __________ ____
+# One Jontillion Spies
 
-A special PVE gamemode designed by Uncle Dane for Uncletopia servers, but forked for use on a _________ video. The BLUE team consisting of up to 12 human players is faced with an army of Spy Bots on RED team. The goal of the gamemode is to fight through the defenses of the Spy bots and win the round. Best played on Payload and A/D maps.  
+A special PVE gamemode designed by Uncle Dane for Uncletopia servers, but forked for use on a Jontohil2 video. The BLUE team consisting of up to 12 human players is faced with an army of Spy Bots on RED team. The goal of the gamemode is to fight through the defenses of the Spy bots and win the round. Best played on Payload and A/D maps.  
 
 ## ConVars
 - `sm_engipve_allow_respawnroom_build` (default: 1) - allows human engineers to build in spawnrooms.
